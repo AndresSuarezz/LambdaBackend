@@ -19,7 +19,7 @@ export class CallsService {
           settings_override: {
             transcription: {
               mode: 'auto-on',
-              languages: ['en', 'es']
+              languages: ['es']
             }
           }
         }
