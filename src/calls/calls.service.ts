@@ -19,7 +19,7 @@ export class CallsService {
       await call.update({
           settings_override: {
             transcription: {
-              mode: 'auto-on',
+              mode: 'available',
               languages: ['es'],
             },
           },
