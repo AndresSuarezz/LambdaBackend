@@ -5,18 +5,18 @@ import { CallsService } from './calls.service';
 export class CallsController {
   constructor(private readonly callsService: CallsService) {}
 
-  @Post('startranscription/:callId')
-  create(@Param('callId') callId: string) {
-    return this.callsService.startTranscription(callId);
+  @Post('start-transcription/:callId')
+  async create(@Param('callId') callId: string) {
+    return await this.callsService.startTranscription(callId);
   }
 
-  @Post('endtranscription/:callId')
-  endTranscription(@Param('callId') callId: string) {
-    return this.callsService.endTranscription(callId);
+  @Post('end-transcription/:callId')
+  async endTranscription(@Param('callId') callId: string) {
+    return await this.callsService.endTranscription(callId);
   }
 
   @Get('transcription/:callId')
-  findAll(@Param('callId') callId: string) {
-    return this.callsService.listTrancription(callId);
+  async findAll(@Param('callId') callId: string) {
+    return await this.callsService.listTrancription(callId);
   }
 }
