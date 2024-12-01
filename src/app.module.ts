@@ -4,6 +4,7 @@ import { ConfigModule } from '@nestjs/config';
 import { EnvConfiguration } from './config/app.config';
 import { JoiValidationSchema } from './config/joi.validation';
 import { CallsModule } from './calls/calls.module';
+import { CommonModule } from './common/common.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { CallsModule } from './calls/calls.module';
     }),
     EmailsModule,
     CallsModule,
+    CommonModule,
   ],
   controllers: [],
   providers: [],
