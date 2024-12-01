@@ -26,7 +26,9 @@ export class CallsService {
       )
       await call.startTranscription();
       return {
-        message: 'Transcription started successfully',
+        data: {
+          message: 'Transcription started successfully',
+        }
       };
     } catch (error) {
       console.log(error);
