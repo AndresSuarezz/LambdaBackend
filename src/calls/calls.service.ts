@@ -1,33 +1,37 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { StreamClient } from '@stream-io/node-sdk';
 
 @Injectable()
 export class CallsService {
-  private client = new StreamClient(
-    this.configService.get<string>('CHAT_API_KEY'),
-    this.configService.get<string>('STREAM_API_SECRET'),
-  );
+  private client: StreamClient;
 
-  constructor(private readonly configService: ConfigService) {}
+  constructor(private readonly configService: ConfigService) {
+    this.client = new StreamClient(
+      this.configService.get<string>('CHAT_API_KEY'),
+      this.configService.get<string>('STREAM_API_SECRET'),
+    );
+  }
 
   async startTranscription(callId: string) {
     try {
       const call = this.client.video.call('default', callId);
       await call.update({
-        settings_override: {
-          transcription: {
-            mode: 'auto-on',
-            languages: ['es'],
+          settings_override: {
+            transcription: {
+              mode: 'auto-on',
+              languages: ['es'],
+            },
           },
-        },
       });
       await call.startTranscription();
+
+
       return {
         message: 'Transcription started successfully',
       };
     } catch (error) {
-      console.log(error);
+      throw new BadRequestException('Failed to start transcription', error);
     }
   }
 
@@ -35,13 +39,12 @@ export class CallsService {
     try {
       const call = this.client.video.call('default', callId);
       const transcription = await call.stopTranscription();
-      console.log(transcription);
       return {
         message: 'Transcription stopped successfully',
         data: transcription,
       };
     } catch (error) {
-      console.log(error);
+      throw new BadRequestException('Failed to stop transcription', error);
     }
   }
 
@@ -54,7 +57,7 @@ export class CallsService {
       });
       return urls;
     } catch (error) {
-      console.log(error);
+      throw new BadRequestException('Failed to list transcriptions', error);
     }
   }
 }
