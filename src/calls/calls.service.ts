@@ -11,24 +11,20 @@ export class CallsService {
 
   constructor(private readonly configService: ConfigService) {}
 
-
   async startTranscription(callId: string) {
     try {
-      const call = this.client.video.call('default', callId)
+      const call = this.client.video.call('default', callId);
       await call.update({
-          settings_override: {
-            transcription: {
-              mode: 'auto-on',
-              languages: ['es']
-            }
-          }
-        }
-      )
+        settings_override: {
+          transcription: {
+            mode: 'auto-on',
+            languages: ['es'],
+          },
+        },
+      });
       await call.startTranscription();
       return {
-        data: {
-          message: 'Transcription started successfully',
-        }
+        message: 'Transcription started successfully',
       };
     } catch (error) {
       console.log(error);
@@ -37,7 +33,7 @@ export class CallsService {
 
   async endTranscription(callId: string) {
     try {
-      const call = this.client.video.call('default', callId)
+      const call = this.client.video.call('default', callId);
       const transcription = await call.stopTranscription();
       console.log(transcription);
       return {
@@ -51,13 +47,12 @@ export class CallsService {
 
   async listTrancription(callId: string) {
     try {
-      const call = this.client.video.call('default', callId)
+      const call = this.client.video.call('default', callId);
       const transcription = await call.listTranscriptions();
-      let transcriptions
-      transcriptions = transcription.transcriptions.forEach((transcription) => {
-        console.log(transcription.url);
+      const urls = transcription.transcriptions.map((transcription) => {
+        return transcription.url;
       });
-      return transcriptions;
+      return urls;
     } catch (error) {
       console.log(error);
     }
