@@ -14,5 +14,5 @@ export class CreateEmailDto {
 
   @IsString()
   @IsNotEmpty()
-  transcript: string;
+  roomId: string;
 }

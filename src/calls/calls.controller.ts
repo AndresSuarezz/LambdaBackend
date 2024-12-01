@@ -17,6 +17,6 @@ export class CallsController {
 
   @Get('transcription/:callId')
   async findAll(@Param('callId') callId: string) {
-    return await this.callsService.listTrancription(callId);
+    return await this.callsService.listTranscription(callId);
   }
 }
