@@ -15,6 +15,16 @@ export class CallsService {
   async startTranscription(callId: string) {
     try {
       const call = this.client.video.call('default', callId)
+      await call.getOrCreate({
+        data: {
+          settings_override: {
+            transcription: {
+              mode: 'auto-on',
+              languages: ['en', 'es']
+            }
+          }
+        }
+      })
       const transcription = await call.startTranscription();
       console.log(transcription);
       return transcription;
