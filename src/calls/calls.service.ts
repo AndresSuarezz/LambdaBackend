@@ -26,7 +26,10 @@ export class CallsService {
       )
       const transcription = await call.startTranscription();
       console.log(transcription);
-      return transcription;
+      return {
+        message: 'Transcription started successfully',
+        data: transcription,
+      };
     } catch (error) {
       console.log(error);
     }
@@ -37,7 +40,10 @@ export class CallsService {
       const call = this.client.video.call('default', callId)
       const transcription = await call.stopTranscription();
       console.log(transcription);
-      return transcription;
+      return {
+        message: 'Transcription stopped successfully',
+        data: transcription,
+      };
     } catch (error) {
       console.log(error);
     }
