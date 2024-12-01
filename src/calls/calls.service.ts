@@ -24,11 +24,9 @@ export class CallsService {
           }
         }
       )
-      const transcription = await call.startTranscription();
-      console.log(transcription);
+      await call.startTranscription();
       return {
         message: 'Transcription started successfully',
-        data: transcription,
       };
     } catch (error) {
       console.log(error);
@@ -53,10 +51,11 @@ export class CallsService {
     try {
       const call = this.client.video.call('default', callId)
       const transcription = await call.listTranscriptions();
-      transcription.transcriptions.forEach((transcription) => {
+      let transcriptions
+      transcriptions = transcription.transcriptions.forEach((transcription) => {
         console.log(transcription.url);
       });
-      return transcription;
+      return transcriptions;
     } catch (error) {
       console.log(error);
     }
