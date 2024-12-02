@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { Resend } from 'resend';
 import { ConfigService } from '@nestjs/config';
 import { CreateEmailDto } from './dto/create-email.dto';
@@ -86,8 +86,6 @@ export class EmailsService {
       ${callSummary}
       ${videosHtml}
       </div>`;
-      console.log('Video',videosHtml)
-      console.log(email)
 
       const { data, error } = await resend.emails.send({
         from: 'lambda@emails.lambdaz.online',
@@ -105,7 +103,7 @@ export class EmailsService {
         data,
       };
     } catch (error) {
-      console.log(error);
+      throw new BadRequestException(error);
     }
   }
 }
