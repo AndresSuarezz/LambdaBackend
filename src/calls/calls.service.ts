@@ -88,17 +88,17 @@ export class CallsService {
         });
       });
       mapiao = this.limpiarSaltosDeLinea(mapiao);
-      console.log(mapiao);
+      //console.log(mapiao);
       // Estructurar el resultado final
       return mapiao;
-      const result = {
-        callId,
-        responses: validResponses,
-        mapiao,
-        errors: responses.filter((response) => response.error), // Incluir errores si los hay
-      };
+      // const result = {
+      //   callId,
+      //   responses: validResponses,
+      //   mapiao,
+      //   errors: responses.filter((response) => response.error), // Incluir errores si los hay
+      // };
 
-      return result;
+      // return result;
     } catch (error) {
       console.error('Error listing transcriptions:', error);
       throw new BadRequestException('Failed to list transcriptions', error);

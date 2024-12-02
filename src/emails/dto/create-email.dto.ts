@@ -10,7 +10,7 @@ export class CreateEmailDto {
   @IsString({ each: true })
   @IsArray()
   @IsNotEmpty()
-  urlVideo: string[];
+  urlVideos: string[];
 
   @IsString()
   @IsNotEmpty()
