@@ -8,4 +8,7 @@ export const JoiValidationSchema = Joi.object({
   RESEND_API_KEY: Joi.string().required(),
   STREAM_API_SECRET: Joi.string(),
   CHAT_API_KEY: Joi.string(),
+
+  SUMSUB_TOKEN: Joi.string().required(),
+  SUMSUB_SECRET_KEY: Joi.string().required(),
 });

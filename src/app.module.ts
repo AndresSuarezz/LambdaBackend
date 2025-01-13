@@ -5,6 +5,7 @@ import { EnvConfiguration } from './config/app.config';
 import { JoiValidationSchema } from './config/joi.validation';
 import { CallsModule } from './calls/calls.module';
 import { CommonModule } from './common/common.module';
+import { SumsubauthModule } from './sumsubauth/sumsubauth.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { CommonModule } from './common/common.module';
     EmailsModule,
     CallsModule,
     CommonModule,
+    SumsubauthModule,
   ],
   controllers: [],
   providers: [],

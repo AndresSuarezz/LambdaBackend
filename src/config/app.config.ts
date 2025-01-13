@@ -6,4 +6,7 @@ export const EnvConfiguration = () => ({
     
     STREAM_API_SECRET: process.env.STREAM_API_SECRET,
     CHAT_API_KEY: process.env.CHAT_API_KEY,
+
+    SUMSUB_TOKEN: process.env.SUMSUB_TOKEN,
+    SUMSUB_SECRET_KEY: process.env.SUMSUB_SECRET_KEY,
 })
