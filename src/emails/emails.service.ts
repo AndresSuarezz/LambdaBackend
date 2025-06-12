@@ -102,7 +102,7 @@ export class EmailsService {
       </div>`;
 
       const { data, error } = await resend.emails.send({
-        from: 'lambda@emails.lambdaz.online',
+        from: 'no-reply@lambdaz.online',
         to: to,
         subject: 'El resumen de tu clase está listo!',
         html: email,
